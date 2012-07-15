@@ -1,11 +1,14 @@
 
+import predictor
 import getopt
 import sys
 
 def help_error_message():
+    """Prints a message telling the user to use the -h or --help flag."""
     print "Use the -h or --help flags for help."
 
 def usage():
+    """Describes the command-line flags that can be used with predict.py."""
     print "Usage: python predict.py [-flags] file"
     print " -h, --help: display this message"
     print " -i file, --train=file: use file as training set"
@@ -74,12 +77,9 @@ if __name__ == '__main__':
         help_error_message()
         sys.exit(2)
     
-    # Fill in code below as needed
-    #predictor = None
-    #predictor.train(train_file)
+    p = predictor.Predictor()
+    p.train(train_file, verbose)
     if cross_validation_file != None:
-        pass
-        #predictor.cross_validate(cross_validation_file, cross_validation_output_file)
+        p.cross_validate(cross_validation_file, cross_validation_output_file, verbose)
     if output_file != None:
-        pass
-        #predictor.predict(test_file, output_file)
+        p.predict(test_file, output_file, verbose)
